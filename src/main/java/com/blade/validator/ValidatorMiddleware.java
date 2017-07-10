@@ -1,6 +1,6 @@
 package com.blade.validator;
 
-import com.blade.mvc.hook.Invoker;
+import com.blade.mvc.hook.Signature;
 import com.blade.mvc.hook.WebHook;
 import com.blade.validator.annotation.*;
 import com.blade.validator.exception.ValidateException;
@@ -19,9 +19,9 @@ import java.util.regex.Pattern;
  */
 public class ValidatorMiddleware implements WebHook {
 
-    public boolean before(Invoker invoker) {
-        Object[] args = invoker.getParameters();
-        Method method = invoker.getAction();
+    public boolean before(Signature signature) {
+        Object[] args = signature.getParameters();
+        Method method = signature.getAction();
 
         Parameter[] parameters = method.getParameters();
         for (int i = 0; i < parameters.length; i++) {
