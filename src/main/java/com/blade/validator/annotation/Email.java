@@ -7,6 +7,10 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * 邮箱验证
+ * 当注解值不是一个email格式
+ */
 @Target(FIELD)
 @Retention(RUNTIME)
 @Documented

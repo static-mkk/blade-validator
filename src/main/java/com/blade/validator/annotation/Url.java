@@ -7,6 +7,10 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * 验证是否是URL
+ * 当注解值不是一个url
+ */
 @Target(FIELD)
 @Retention(RUNTIME)
 @Documented
