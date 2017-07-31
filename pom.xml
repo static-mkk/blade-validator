@@ -7,6 +7,7 @@
     <groupId>com.bladejava</groupId>
     <artifactId>blade-validator</artifactId>
     <version>0.0.1</version>
+    <name>blade-validator</name>
     <url>https://github.com/bladejava/blade-validator</url>
     <description>blade validator</description>
 
@@ -33,7 +34,7 @@
         <dependency>
             <groupId>com.bladejava</groupId>
             <artifactId>blade-mvc</artifactId>
-            <version>2.0.1-alpha</version>
+            <version>2.0.1-alpha2</version>
             <scope>compile</scope>
         </dependency>
 
