@@ -6,7 +6,7 @@
 
     <groupId>com.bladejava</groupId>
     <artifactId>blade-validator</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>blade-validator</name>
     <url>https://github.com/bladejava/blade-validator</url>
     <description>blade validator</description>

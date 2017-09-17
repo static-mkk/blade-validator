@@ -18,5 +18,8 @@ public @interface Length {
 
     String message() default "Length exceeds the limit";
 
-    double value();
+    int max() default Integer.MAX_VALUE;
+
+    int min() default -1;
+
 }

@@ -20,8 +20,8 @@ import java.util.regex.Pattern;
 public class ValidatorMiddleware implements WebHook {
 
     public boolean before(Signature signature) {
-        Object[] args = signature.getParameters();
-        Method method = signature.getAction();
+        Object[] args   = signature.getParameters();
+        Method   method = signature.getAction();
 
         Parameter[] parameters = method.getParameters();
         for (int i = 0; i < parameters.length; i++) {
@@ -62,6 +62,10 @@ public class ValidatorMiddleware implements WebHook {
             if (null != max) {
                 validateMax(max, fieldValue);
             }
+            Min min = field.getAnnotation(Min.class);
+            if (null != min) {
+                validateMin(min, fieldValue);
+            }
             Email email = field.getAnnotation(Email.class);
             if (null != email) {
                 validateEmail(email, fieldValue);
@@ -99,17 +103,33 @@ public class ValidatorMiddleware implements WebHook {
 
     public void validateLength(Length length, Object val) {
         if (null != val) {
-            if (val.toString().length() > length.value()) {
-                throw new ValidateException(length.message());
+            if (val.toString().length() > length.max()) {
+                String msg = String.format(length.message(), length.max());
+                throw new ValidateException(msg);
+            }
+            if (val.toString().length() < length.min()) {
+                String msg = String.format(length.message(), length.min());
+                throw new ValidateException(msg);
             }
         }
     }
 
     public void validateMax(Max max, Object val) {
-        if (null != val) {
+        if (null != max && null != val) {
             Double d = Double.valueOf(val.toString());
             if (d > max.value()) {
-                throw new ValidateException(max.message());
+                String msg = String.format(max.message(), max.value());
+                throw new ValidateException(msg);
+            }
+        }
+    }
+
+    public void validateMin(Min min, Object val) {
+        if (null != min && null != val) {
+            Double d = Double.valueOf(val.toString());
+            if (d < min.value()) {
+                String msg = String.format(min.message(), min.value());
+                throw new ValidateException(msg);
             }
         }
     }
