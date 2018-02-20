@@ -79,7 +79,7 @@ public class ValidatorMiddleware implements WebHook {
 
     private void validateUrl(Url url, Object fieldValue) {
         if (null != fieldValue) {
-            String regex = "(https?://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
+            String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
             if (!Pattern.matches(regex, fieldValue.toString())) {
                 throw new ValidateException(url.message());
             }
